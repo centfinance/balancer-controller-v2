@@ -18,7 +18,7 @@ pragma experimental ABIEncoderV2;
 import "@balancer-labs/v2-interfaces/contracts/pool-utils/IManagedPool.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
-import "../balancer-v2-submodule/pkg/pool-weighted/contracts/managed/ManagedPool.sol";
+import "../balancer-v2-monorepo/pkg/pool-weighted/contracts/managed/ManagedPool.sol";
 
 import "./interfaces/IPrivateInvestors.sol";
 

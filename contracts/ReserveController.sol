@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 import "./base/BaseUtils.sol";
 import "@balancer-labs/v2-interfaces/contracts/pool-utils/IManagedPool.sol";
 import "@balancer-labs/v2-interfaces/contracts/vault/IVault.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";
 import "./lib/ManagedPoolFactory.sol";
 import "./lib/ReserveToken.sol";
 

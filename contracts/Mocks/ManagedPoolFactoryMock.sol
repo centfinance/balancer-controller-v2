@@ -15,7 +15,7 @@
 pragma solidity >=0.7.0 <0.9.0;
 pragma experimental ABIEncoderV2;
 
-import "../../balancer-v2-submodule/pkg/pool-weighted/contracts/managed/ManagedPool.sol";
+import "../../balancer-v2-monorepo/pkg/pool-weighted/contracts/managed/ManagedPool.sol";
 import "./ManagedPoolMock.sol";
 import "./VaultMock.sol";
 

@@ -1,3 +1,6 @@
 [submodule "balancer-v2-submodule"]
 	path = balancer-v2-submodule
 	url = https://github.com/balancer-labs/balancer-v2-monorepo.git
+[submodule "balancer-v2-monorepo"]
+	path = balancer-v2-monorepo
+	url = https://github.com/balancer-labs/balancer-v2-monorepo.git

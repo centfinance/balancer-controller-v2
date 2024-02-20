@@ -1,5 +1,5 @@
 {
-  "name": "balancer-controller",
+  "name": "balancer-controller-v2",
   "description": "Solidity contracts implementing a Balancer controller",
   "version": "1.0.0",
   "author": {
@@ -49,7 +49,7 @@
     "rimraf": "^5.0.5",
     "solhint": "^4.0.0",
     "solhint-plugin-prettier": "^0.1.0",
-    "solidity-coverage": "^0.8.5",
+    "solidity-coverage": "^0.8.6",
     "ts-generator": "^0.1.1",
     "ts-node": "^10.9.2",
     "typechain": "^8.3.2",
@@ -74,7 +74,7 @@
   },
   "scripts": {
     "clean": "rimraf ./artifacts ./cache ./coverage ./types ./coverage.json && npm run typechain",
-    "compile": "cross-env TS_NODE_TRANSPILE_ONLY=true hardhat compile",
+    "compile": "yarn hardhat compile",
     "coverage": "hardhat coverage --solcoverjs ./.solcover.js --temp artifacts --testfiles \"test/**/*.ts\" && npm run typechain",
     "deploy:contracts": "hardhat deploy",
     "lint": "npm run lint:sol && npm run lint:ts && npm run prettier:check",
@@ -87,5 +87,6 @@
     "task:withdraw": "hardhat task:withdraw",
     "test": "hardhat test",
     "typechain": "cross-env TS_NODE_TRANSPILE_ONLY=true hardhat typechain"
-  }
+  },
+  "packageManager": "yarn@4.1.0"
 }

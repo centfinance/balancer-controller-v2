@@ -1,8 +1,11 @@
 import "@nomicfoundation/hardhat-toolbox";
 import "hardhat-deploy";
+import { TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS } from "hardhat/builtin-tasks/task-names";
 import type { HardhatUserConfig } from "hardhat/config";
-import { vars } from "hardhat/config";
+import { subtask, vars } from "hardhat/config";
 import type { NetworkUserConfig } from "hardhat/types";
+import path from "path";
+import "solidity-coverage";
 
 import "./tasks/accounts";
 import "./tasks/lock";
@@ -22,6 +25,27 @@ const chainIds = {
   gnosis: 100,
   "gnosis-testnet": 69,
 };
+
+subtask(TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS, async (_, { config }, runSuper) => {
+  const paths = await runSuper();
+  const excludedFiles = [
+    "ReserveController.sol",
+    "BasePoolController.sol",
+    "BondingCurveController.sol",
+    "WeightedBondingCurveController.sol",
+    "WeightedReserveController.sol",
+    "base/BaseController.sol",
+    "base/BaseUtils.sol",
+    "base/BaseWeightedController.sol",
+    "base/BaseWeightedUtils.sol",
+    "lib/SupportLib.sol",
+  ]; // Add the names of the files you want to exclude
+
+  return paths.filter((solidityFilePath: string) => {
+    const relativePath = path.relative(config.paths.sources, solidityFilePath);
+    return !excludedFiles.includes(relativePath);
+  });
+});
 
 function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
   let jsonRpcUrl: string;
@@ -67,6 +91,8 @@ const config: HardhatUserConfig = {
   },
   networks: {
     hardhat: {
+      allowUnlimitedContractSize: true,
+      gas: "auto",
       forking: {
         enabled: true,
         url: "https://celo-mainnet.infura.io/v3/1e78db6f14a14ab683177c462c7e7a52",
@@ -91,7 +117,7 @@ const config: HardhatUserConfig = {
     tests: "./test",
   },
   solidity: {
-    version: "0.8.0",
+    version: "0.7.1",
     settings: {
       metadata: {
         // Not including the metadata hash
@@ -102,7 +128,7 @@ const config: HardhatUserConfig = {
       // https://hardhat.org/hardhat-network/#solidity-optimizer-support
       optimizer: {
         enabled: true,
-        runs: 200,
+        runs: 1000,
       },
     },
   },
